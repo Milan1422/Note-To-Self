@@ -27,5 +27,19 @@ app.get("/api/notes", function(req,res){
     res.sendFile(path.join(__dirname, "/db/db.json"))
 });
 
+// post new note
+app.post("/api/notes", function(req,res){
+    const newNote = req.body;
+    let noteID = uuidv4()
+    newNote.id = noteID;
+    jsondb.push(newNote)
+    
+    fs.writeFile("./db/db.json", JSON.stringify(jsondb), function(err){
+        if (err) throw err;
+        res.json("Response")
+    })
+    
+});
+
 // server listener
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
