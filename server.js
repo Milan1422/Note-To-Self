@@ -6,8 +6,8 @@ const { v4: uuidv4 } = require('uuid');
 const { json } = require("express");
 
 // Ser up of express app
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+let PORT = process.env.PORT || 3000;
 
 // express data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -43,7 +43,7 @@ app.post("/api/notes", function(req,res){
 
 // delete notes function
 app.delete("/api/notes/:id", function(req, res) {
-    var collectID = req.params.id
+    let collectID = req.params.id
 
     for (i=0; i < jsondb.length; i++){
         if(jsondb[i].id === collectID){
